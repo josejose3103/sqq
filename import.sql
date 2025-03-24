@@ -20,3 +20,4 @@ SELECT number, byoumei, kingaku FROM article6 WHERE day BETWEEN '2022-01-11' AND
   ELECT 農家名, SUM(金額) FROM article7 WHERE 日時 BETWEEN '2022-01-11' AND '2022-01-25' GROUP BY 農家名, 組勘番号 ORDER BY 組勘番号;
   SELECT * FROM table4 WHERE personalID = '1514645329' INTO OUTFILE '/tmp/11.csv';;
   SELECT DATE_FORMAT(day, '%Y') as Y, sum(金額) FROM article6 GROUP by DATE_FORMAT(day, '%Y');
+  SELECT number as 番号, byoumei as 病名, kingaku as 金額, day as 日付 FROM article3 WHERE day BETWEEN '2022-01-01' AND '2022-01-28' AND kumikanbangou = '22.0';
