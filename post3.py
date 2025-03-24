@@ -55,9 +55,43 @@ try:
     pdf.drawString(50, 800, "クエリ結果")  # ← 日本語対応
     pdf.line(50, 795, 550, 795)  # 線を引く
 
+    # ヘッダー行を追加
+    headers = ["番号", "病名", "金額", "日付"]
+    table_data = [headers] + results  # ヘッダー＋データを結合
+
+    # テーブルを作成
+    table = Table(table_data, colWidths=[60, 200, 100, 100])
+
+    # スタイルを適用
+    style = TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),  # ヘッダーの背景色
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),  # ヘッダーの文字色
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),  # すべての列を中央揃え
+        ('FONTNAME', (0, 0), (-1, 0), 'Ariel'),  # ヘッダーのフォント
+        ('FONTSIZE', (0, 0), (-1, -1), 12),  # 文字サイズ
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 10),  # ヘッダーの余白
+        ('GRID', (0, 0), (-1, -1), 1, colors.black),  # 表に枠線をつける
+    ])
+
+    table.setStyle(style)
+
+    # PDFに追加
+    elements = [table]
+    doc.build(elements)
+
+    print(f"✅ PDFが {PDF_FILENAME} に出力されました！")
+
+
+finally:
+    if cursor:
+        cursor.close()
+    if conn:
+        conn.close()
+
+
     # データの描画
-    y = 780
-    for row in results:
+    #y = 780
+    #for row in results:
         pdf.drawString(50, y, f"番号: {row[0]}, 病名: {row[1]}, 金額: {row[2]}, 日付: {row[3]}")
         y -= 20
         if y < 50:
@@ -66,13 +100,13 @@ try:
             y = 800
 
     # PDFを保存
-    pdf.save()
-    print(f"PDFが {PDF_FILENAME} に出力されました！")
+    #pdf.save()
+    #print(f"PDFが {PDF_FILENAME} に出力されました！")
 
-except Exception as e:
+#except Exception as e:
     print("Error:", e)
 
-finally:
+#finally:
     if cursor:
         cursor.close()
     if conn:

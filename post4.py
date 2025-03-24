@@ -42,9 +42,9 @@ try:
 
     # 日本語フォントを登録
     font_path = "/System/Library/Fonts/Supplemental/Arial Unicode.ttf"
+    #pdfmetrics.registerFont(TTFont("Arial", font_p    
+    #pdfmetrics.registerFont(TTFont("Arial", font_path))
     pdfmetrics.registerFont(TTFont("Arial", font_path))
-    #font_path = "/System/Library/Fonts/Supplemental/NotoSansCJKjp-Regular.otf"
-    #pdfmetrics.registerFont(TTFont("Noto", font_path))
     #pdf.setFont("Arial", 12)
     #pdf.drawString(50, 800, "クエリ結果: 日本語表示テスト")
     #pdf.drawString(50, 800, "クエリ結果")  # ← 日本語対応
@@ -63,7 +63,7 @@ try:
         ('BACKGROUND', (0, 0), (-1, 0), colors.grey),  # ヘッダーの背景色
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),  # ヘッダーの文字色
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),  # すべての列を中央揃え
-        ('FONTNAME', (0, 0), (-1, 0), 'Noto'),  # ヘッダーのフォント
+        ('FONTNAME', (0, 0), (-1, 0), 'Ariel'),  # ヘッダーのフォント
         ('FONTSIZE', (0, 0), (-1, -1), 12),  # 文字サイズ
         ('BOTTOMPADDING', (0, 0), (-1, 0), 10),  # ヘッダーの余白
         ('GRID', (0, 0), (-1, -1), 1, colors.black),  # 表に枠線をつける
