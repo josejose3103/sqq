@@ -29,7 +29,7 @@ try:
 
     # クエリ実行
     query = """
-    SELECT number, byoumei, kingaku, day
+    SELECT number, byoumei, to_char(kingaku, '¥9,999,999'), day
     FROM article3
     WHERE day BETWEEN '2022-01-01' AND '2022-01-28'
     AND kumikanbangou = '22.0';
@@ -41,15 +41,20 @@ try:
     doc = SimpleDocTemplate(PDF_FILENAME, pagesize=A4)
 
     # 日本語フォントを登録
-    font_path = "/System/Library/Fonts/Supplemental/Arial Unicode.ttf"
+    #font_path = "/System/Library/Fonts/Supplemental/HiraginoSans-W3.ttc"  # Mac の場合
+    #pdfmetrics.registerFont(TTFont("Hiragino", font_path))
+
+    #font_path = "/System/Library/Fonts/Supplemental/Arial Unicode.ttf"
     #pdfmetrics.registerFont(TTFont("Arial", font_p    
+    #pdfmetrics.registerFont(TTFont("ArialUnicode", font_path))
     #pdfmetrics.registerFont(TTFont("Arial", font_path))
-    pdfmetrics.registerFont(TTFont("Arial", font_path))
     #pdf.setFont("Arial", 12)
     #pdf.drawString(50, 800, "クエリ結果: 日本語表示テスト")
     #pdf.drawString(50, 800, "クエリ結果")  # ← 日本語対応
     #pdf.line(50, 795, 550, 795)  # 線を引く
-
+    #font_path = "/System/Library/Fonts/Supplemental/ipaexg.ttf"
+    font_path = "/Library/Fonts/ipaexg.ttf"
+    pdfmetrics.registerFont(TTFont("IPAexGothic", font_path))
 
     # ヘッダー行を追加
     headers = ["番号", "病名", "金額", "日付"]
@@ -63,7 +68,7 @@ try:
         ('BACKGROUND', (0, 0), (-1, 0), colors.grey),  # ヘッダーの背景色
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),  # ヘッダーの文字色
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),  # すべての列を中央揃え
-        ('FONTNAME', (0, 0), (-1, 0), 'Ariel'),  # ヘッダーのフォント
+        ('FONTNAME', (0, 0), (-1, -1), 'IPAexGothic'),  # ヘッダーのフォント
         ('FONTSIZE', (0, 0), (-1, -1), 12),  # 文字サイズ
         ('BOTTOMPADDING', (0, 0), (-1, 0), 10),  # ヘッダーの余白
         ('GRID', (0, 0), (-1, -1), 1, colors.black),  # 表に枠線をつける
