@@ -39,3 +39,11 @@ ORDER BY year, month, period;
 SELECT to_char(sum(kingaku),'¥9,999,999') as 合計 FROM article3 WHERE day BETWEEN '2025-01-01' AND '2025-01-28' AND kumikanbangou = '22.0';
     合計     
 media=# SELECT number as 番号, byoumei as 病名, to_char(kingaku, '¥9,999,999') as金額, day as 日付 FROM article3 WHERE day BETWEEN '2022-01-01' AND '2022-01-28' AND kumikanbangou = '22.0';
+media=# SELECT 
+    EXTRACT(YEAR FROM day) AS 年,
+    SUM(kingaku) AS 合計
+FROM article3 
+WHERE EXTRACT(MONTH FROM day) = 4
+  AND EXTRACT(DAY FROM day) BETWEEN 1 AND 4
+GROUP BY 年
+ORDER BY 年;
