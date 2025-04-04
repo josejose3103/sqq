@@ -47,3 +47,11 @@ WHERE EXTRACT(MONTH FROM day) = 4
   AND EXTRACT(DAY FROM day) BETWEEN 1 AND 4
 GROUP BY 年
 ORDER BY 年;
+#msaccess
+
+SELECT YEAR([日付]) AS 年, SUM([金額]) AS 合計
+FROM 平成１５年
+WHERE MONTH([日付]) = 4 
+  AND DAY([日付]) BETWEEN 1 AND 4
+GROUP BY YEAR([日付])
+ORDER BY YEAR([日付]);
